@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>OceanSips | Premium Custom Labelled Water</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+  --p1:#00e5ff;
+  --p2:#0066ff;
+  --bg:#020b16;
+  --card:rgba(255,255,255,.15);
+  --text:#fff;
+}
+body.light{
+  --bg:#f4fbff;
+  --card:#ffffff;
+  --text:#001;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,Segoe UI,sans-serif}
+html{scroll-behavior:smooth}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  transition:.4s;
+  overflow-x:hidden;
+}
+
+/* NAVBAR */
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:16px 8%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  backdrop-filter:blur(14px);
+  background:rgba(0,0,0,.35);
+  z-index:99;
+}
+.logo{
+  font-size:1.6rem;
+  font-weight:700;
+  background:linear-gradient(90deg,var(--p1),var(--p2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+nav ul{display:flex;gap:30px;list-style:none}
+nav ul a{color:#cfefff;text-decoration:none}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  padding:120px 8%;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:10px;
+  align-items:center;
+}
+.hero h1{font-size:4rem;line-height:1.1}
+.hero span{
+  background:linear-gradient(90deg,var(--p1),var(--p2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.hero p{margin:25px 0;color:#cfefff}
+
+/* BUTTON */
+.btn{
+  padding:14px 36px;
+  border-radius:40px;
+  background:linear-gradient(90deg,var(--p1),var(--p2));
+  color:#001;
+  font-weight:600;
+  text-decoration:none;
+  display:inline-block;
+}
+
+/* BOTTLE */
+.bottle-area{display:flex;justify-content:center;perspective:1200px}
+.bottle{
+  width:200px;height:460px;border-radius:20px;
+  background:linear-gradient(180deg,#ffffff66,#ffffff05);
+  backdrop-filter:blur(12px);
+  position:relative;
+  transition:.2s;
+}
+.bottle:before{
+  content:"";
+  position:absolute;top:-35px;left:50%;
+  transform:translateX(-50%);
+  width:70px;height:35px;
+  background:#e8faff;border-radius:14px;
+}
+.label{
+  position:absolute;
+  top:170px;left:16px;right:16px;
+  height:120px;border-radius:18px;
+  background:linear-gradient(135deg,var(--p1),var(--p2));
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;letter-spacing:2px;
+  text-align:center;
+}
+
+
+/* CONTROLS */
+.controls{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:15px;
+  margin-top:20px;
+}
+input,select{
+  padding:12px;border-radius:12px;border:none;
+}
+
+/* SECTIONS */
+section{padding:30px 8%}
+.title{
+  font-size:2.6rem;
+  text-align:center;
+  margin-bottom:20px;
+  background:linear-gradient(90deg,var(--p1),var(--p2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.why {
+  padding: 120px 8%;
+  text-align: center;
+  background: radial-gradient(circle at top, #041d2d, #000c14);
+}
+
+.why-title {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.why-subtitle {
+  max-width: 620px;
+  margin: 0 auto 70px;
+  color: #bfe9ff;
+  font-size: 1.1rem;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 35px;
+}
+
+.why-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  border-radius: 26px;
+  padding: 40px 30px;
+  transition: 0.45s ease;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+.why-card:hover {
+  transform: translateY(-14px) scale(1.02);
+  box-shadow: 0 30px 70px rgba(0,198,255,0.25);
+}
+
+.why-card .icon {
+  font-size: 2.2rem;
+  display: inline-block;
+  margin-bottom: 18px;
+}
+
+.why-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+  color: #e9f8ff;
+}
+
+.why-card p {
+  font-size: 0.95rem;
+  color: #cfefff;
+  line-height: 1.6;
+}
+
+/* Mobile tweak */
+@media (max-width: 600px) {
+  .why-title {
+    font-size: 2.3rem;
+  }
+}
+
+
+/* ORDER */
+.order-box{ 
+  max-width:520px;
+  justify-items: center;  
+  margin:0 auto;
+  background:var(--card);
+  padding:40px;
+  border-radius:24px;
+}
+.order-btn{
+  padding:14px 36px;
+  border-radius:40px;
+  background:linear-gradient(90deg,var(--p1),var(--p2));
+  color:#001;
+  font-weight:600;
+  text-decoration:none;
+  display:inline-block;
+  margin-left: 110px;
+}
+.price{
+  font-size:1.5rem;
+  margin-top:15px;
+}
+.stats {
+  padding: 100px 8%;
+  background: linear-gradient(180deg, #000c14, #021c2c);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  text-align: center;
+}
+
+.stat-card {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  padding: 45px 20px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+}
+
+.stat-card h3 {
+  font-size: 3rem;
+  background: linear-gradient(90deg,#00c6ff,#0072ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.stat-card p {
+  margin-top: 10px;
+  color: #cfefff;
+  letter-spacing: 0.5px;
+}
+.clients {
+  padding: 50px 0;
+  background: #000c14;
+  text-align: center;
+}
+
+.clients-title {
+  font-size: 2.4rem;
+  margin-bottom: 50px;
+  background: linear-gradient(90deg,#00c6ff,#0072ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo-slider {
+  width: 100%;
+}
+
+.logos {
+  display: flex;
+  gap: 60px;
+  animation: scroll 20s linear infinite;
+}
+
+.logos img {
+  height: 250px;
+  transition: 0.4s;
+}
+
+.logos img:hover {
+  filter: none;
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+
+/* FOOTER */
+footer{text-align:center;padding:15px;background-color:#8edcff;color:#001}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}
+  nav ul{display:none}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo" style="display:flex;align-items:center;gap:10px;">
+  <img src="logo.png" alt="OceanSips Logo" style="height:42px;">
+  <span>OceanSips</span>
+</div>
+
+  <ul>
+    <li><a href="#order">Order</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div>
+    <h1>Turn Every Sip Into<br><span>Your Brand</span></h1>
+    <p>Premium customized labelled water bottles for events & brands.</p>
+
+    <div class="controls">
+      <select id="size" onchange="calculatePrice()">
+        <option value="130">250 ml — ₹130</option>
+        <option value="150">500 ml — ₹150</option>
+        <option value="130">1 Litre — ₹130</option>
+      </select>
+      <input type="number" id="qty" placeholder="Quantity" oninput="calculatePrice()">
+    </div>
+
+    <div class="price">
+      Price per pack: ₹<span id="unitPrice">130</span><br>
+      Total: ₹<span id="total">13000</span>
+    </div>
+
+    <br>
+    <a class="btn" href="#order">Proceed</a>
+  </div>
+
+  <div class="bottle-area">
+    <div class="bottle" id="bottle">
+      <div class="label" id="labelText">OCEANSIPS</div>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <h2 class="why-title">Why OceanSips?</h2>
+  <p class="why-subtitle">
+    More than water — a premium branding experience in every sip.
+  </p>
+
+  <div class="why-grid">
+
+    <div class="why-card">
+      <span class="icon">💧</span>
+      <h3>RO + UV Purified</h3>
+      <p>
+        Multi-stage RO & UV purification ensures crystal-clear, safe,
+        and refreshing drinking water.
+      </p>
+    </div>
+
+    <div class="why-card">
+      <span class="icon">🎨</span>
+      <h3>Custom Branding & QR</h3>
+      <p>
+        Add your logo, brand colors, event details, or QR codes
+        with waterproof premium labels.
+      </p>
+    </div>
+
+    <div class="why-card">
+      <span class="icon">🚚</span>
+      <h3>Fast Bulk Delivery</h3>
+      <p>
+        Optimized logistics for weddings, corporate events,
+        hotels, political campaigns & exhibitions.
+      </p>
+    </div>
+
+    <div class="why-card">
+      <span class="icon">📦</span>
+      <h3>Multiple Bottle Sizes</h3>
+      <p>
+        Available in <strong>250ml, 500ml, and 1 Litre</strong>
+        bottles to suit every occasion and budget.
+      </p>
+    </div>
+
+    <div class="why-card">
+      <span class="icon">🧪</span>
+      <h3>Food-Grade Packaging</h3>
+      <p>
+        BPA-free bottles and hygienic sealing ensure safety,
+        quality, and freshness.
+      </p>
+    </div>
+
+    <div class="why-card">
+      <span class="icon">⭐</span>
+      <h3>Premium Brand Impression</h3>
+      <p>
+        Elevate your brand presence with elegant packaging
+        that people remember.
+      </p>
+    </div>
+
+  </div>
+</section>
+<section class="stats">
+  <div class="stats-grid">
+
+    <div class="stat-card">
+      <h3 class="counter" data-target="51">0</h3>
+      <p>Orders Served</p>
+    </div>
+
+    <div class="stat-card">
+      <h3 class="counter" data-target="20000">0</h3>
+      <p>Bottles Delivered</p>
+    </div>
+
+    <div class="stat-card">
+      <h3 class="counter" data-target="51">0</h3>
+      <p>Trusted Clients</p>
+    </div>
+
+  </div>
+</section>
+<section class="clients">
+  <h2 class="clients-title">Trusted By</h2>
+
+  <div class="logo-slider">
+    <div class="logos">
+      <img src="logo1.jpg">
+      <img src="logo2.jpg">
+      <img src="logo3.jpg">
+      <img src="logo4.jpg">
+      <img src="logo5.jpg">
+      <img src="logo6.jpg">
+      <img src="logo7.jpg">
+      <img src="logo8.jpg">
+      <img src="logo9.jpg">
+      <img src="logo10.jpg">
+
+      <!-- Duplicate for seamless loop -->
+      <img src="logo1.jpg">
+      <img src="logo2.jpg">
+      <img src="logo3.jpg">
+      <img src="logo4.jpg">
+      <img src="logo5.jpg">
+      <img src="logo6.jpg">
+      <img src="logo7.jpg">
+      <img src="logo8.jpg">
+      <img src="logo9.jpg">
+      <img src="logo10.jpg">
+    </div>
+  </div>
+</section>
+
+
+<section id="order">
+  <h2 class="title">Place Order</h2>
+  <div class="order-box">
+    <p>Send your order details directly on WhatsApp.</p><br>
+    <a class="order-btn" onclick="sendOrder()">Send on WhatsApp</a>
+  </div>
+</section>
+
+<footer>© 2026 OceanSips • Premium Customized Water Bottles</footer>
+
+<script>
+
+function calculatePrice(){
+  const sizeSelect=document.getElementById("size");
+  const price=Number(sizeSelect.value);
+  const qty=Number(document.getElementById("qty").value)||0;
+
+  document.getElementById("unitPrice").innerText=price;
+  document.getElementById("total").innerText=price*qty;
+}
+calculatePrice();
+
+function sendOrder(){
+  const size=document.getElementById("size").options[document.getElementById("size").selectedIndex].text;
+  const qty=document.getElementById("qty").value;
+  const total=document.getElementById("total").innerText;
+
+  const msg=`Hello OceanSips,%0AOrder Details:%0A${size}%0AQuantity: ${qty}%0ATotal: ₹${total}`;
+  window.open(`https://wa.me/91XXXXXXXXXX?text=${msg}`,"_blank");
+}
+
+document.addEventListener("mousemove",e=>{
+  const b=document.getElementById("bottle");
+  const x=(innerWidth/2-e.pageX)/40;
+  const y=(innerHeight/2-e.pageY)/40;
+  b.style.transform=`rotateY(${x}deg) rotateX(${y}deg)`;
+});
+
+const counters = document.querySelectorAll('.counter');
+let started = false;
+
+function startCounters() {
+  counters.forEach(counter => {
+    const target = +counter.dataset.target;
+    let count = 0;
+    const increment = target / 120;
+
+    const update = () => {
+      count += increment;
+      if (count < target) {
+        counter.innerText = Math.floor(count).toLocaleString();
+        requestAnimationFrame(update);
+      } else {
+        counter.innerText = target.toLocaleString();
+      }
+    };
+    update();
+  });
+}
+
+window.addEventListener('scroll', () => {
+  const section = document.querySelector('.stats');
+  const pos = section.getBoundingClientRect().top;
+  if (pos < window.innerHeight - 100 && !started) {
+    started = true;
+    startCounters();
+  }
+});
+
+
+
+</script>
+
+</body>
+</html>
